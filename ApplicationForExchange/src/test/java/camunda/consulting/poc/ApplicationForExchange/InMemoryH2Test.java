@@ -45,7 +45,15 @@ public class InMemoryH2Test {
   @Test
   @Deployment(resources = "process.bpmn")
   public void testHappyPath() {
-	  //ProcessInstance processInstance = processEngine().getRuntimeService().startProcessInstanceByKey(PROCESS_DEFINITION_KEY);
+	  
+	  
+	  ProcessInstance processInstance = 
+			  processEngine()
+			  .getRuntimeService()
+			  .startProcessInstanceByKey(PROCESS_DEFINITION_KEY,
+					  withVariables("candidateFirstName", "Nele", 
+							  "candidateLastName", "Camunda", 
+							  "email", "nele.uhlemann@camunda.com"));
 	  
 	  // Now: Drive the process by API and assert correct behavior by camunda-bpm-assert
   }
