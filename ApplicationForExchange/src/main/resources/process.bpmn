@@ -7,23 +7,23 @@
     <bpmn:sequenceFlow id="SequenceFlow1" sourceRef="StartEventProcessStarted" targetRef="Task_1a7wvuu" />
     <bpmn:startEvent id="StartEventProcessStarted" name="Applicatoin Opened">
       <bpmn:outgoing>SequenceFlow1</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition messageRef="Message_1l909mh" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1mk7q62" sourceRef="Task_1a7wvuu" targetRef="ExclusiveGateway_0hn24jy" />
-    <bpmn:serviceTask id="Task_1a7wvuu" name="Generate Username and Password">
+    <bpmn:serviceTask id="Task_1a7wvuu" name="Generate Username and Password" camunda:class="camunda.consulting.poc.ApplicationForExchange.CreateUserListener">
       <bpmn:incoming>SequenceFlow1</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1mk7q62</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1ak4xdc" sourceRef="Task_120vlhk" targetRef="Task_1krumi2" />
-    <bpmn:userTask id="Task_120vlhk" name="Fill in application details">
+    <bpmn:userTask id="Task_120vlhk" name="Fill in application details" camunda:assignee="#{userName}">
       <bpmn:extensionElements>
-        <camunda:taskListener class="SendEmailtoUser" event="create" />
+        <camunda:taskListener class="camunda.consulting.poc.ApplicationForExchange.SendTaskEmail" event="create" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_11sz87n</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1ak4xdc</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_00wuueb" sourceRef="Task_1krumi2" targetRef="ExclusiveGateway_0q58tfw" />
-    <bpmn:serviceTask id="Task_1krumi2" name="Check Application Data for completeness">
+    <bpmn:serviceTask id="Task_1krumi2" name="Check Application Data for completeness" camunda:expression="#{true}">
       <bpmn:incoming>SequenceFlow_1ak4xdc</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_00wuueb</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -32,13 +32,14 @@
       <bpmn:outgoing>SequenceFlow_0hp8mb1</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_0pumimd</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="SequenceFlow_0hp8mb1" name="Yes" sourceRef="ExclusiveGateway_0q58tfw" targetRef="Task_0pqnlhz" />
-    <bpmn:sequenceFlow id="SequenceFlow_0pumimd" name="No" sourceRef="ExclusiveGateway_0q58tfw" targetRef="ExclusiveGateway_0hn24jy" />
+    <bpmn:sequenceFlow id="SequenceFlow_0hp8mb1" name="Yes" sourceRef="ExclusiveGateway_0q58tfw" targetRef="Task_0pqnlhz">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_0pumimd" name="No" sourceRef="ExclusiveGateway_0q58tfw" targetRef="ExclusiveGateway_0hn24jy">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1bphpuh" sourceRef="Task_0pqnlhz" targetRef="ExclusiveGateway_0q2s9fc" />
     <bpmn:userTask id="Task_0pqnlhz" name="Check Application Data content">
-      <bpmn:extensionElements>
-        <camunda:taskListener class="emailsTo thing" event="create" />
-      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0hp8mb1</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1bphpuh</bpmn:outgoing>
     </bpmn:userTask>
@@ -47,7 +48,9 @@
       <bpmn:outgoing>SequenceFlow_1bvp7m1</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_11bpzar</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="SequenceFlow_1bvp7m1" name="Yes" sourceRef="ExclusiveGateway_0q2s9fc" targetRef="Task_1bogluy" />
+    <bpmn:sequenceFlow id="SequenceFlow_1bvp7m1" name="Yes" sourceRef="ExclusiveGateway_0q2s9fc" targetRef="Task_1bogluy">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:exclusiveGateway id="ExclusiveGateway_0hn24jy">
       <bpmn:incoming>SequenceFlow_1mk7q62</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_0pumimd</bpmn:incoming>
@@ -55,36 +58,29 @@
       <bpmn:outgoing>SequenceFlow_11sz87n</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_11sz87n" sourceRef="ExclusiveGateway_0hn24jy" targetRef="Task_120vlhk" />
-    <bpmn:sequenceFlow id="SequenceFlow_11bpzar" name="No" sourceRef="ExclusiveGateway_0q2s9fc" targetRef="ExclusiveGateway_0hn24jy" />
-    <bpmn:serviceTask id="Task_1bogluy" name="Create PDF">
+    <bpmn:sequenceFlow id="SequenceFlow_11bpzar" name="No" sourceRef="ExclusiveGateway_0q2s9fc" targetRef="ExclusiveGateway_0hn24jy">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Task_1bogluy" name="Create PDF" camunda:type="external" camunda:topic="CreatePDF">
       <bpmn:incoming>SequenceFlow_1bvp7m1</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0094ec2</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:userTask id="Task_0boqmia" name="Print and upload signed PDF (Club and Applicant)">
-      <bpmn:extensionElements>
-        <camunda:taskListener class="" event="create" />
-      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0094ec2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1l79k4b</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0094ec2" sourceRef="Task_1bogluy" targetRef="Task_0boqmia" />
     <bpmn:sequenceFlow id="SequenceFlow_1l79k4b" sourceRef="Task_0boqmia" targetRef="Task_1lr9w8n" />
-    <bpmn:sendTask id="Task_1lr9w8n" name="Send email to district">
+    <bpmn:sendTask id="Task_1lr9w8n" name="Send email to district" camunda:type="external" camunda:topic="SendEmail">
       <bpmn:incoming>SequenceFlow_1l79k4b</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_15bhjwl</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="SequenceFlow_15bhjwl" sourceRef="Task_1lr9w8n" targetRef="Task_04qsy23" />
     <bpmn:userTask id="Task_04qsy23" name="Print and upload signed PDF (District)">
-      <bpmn:extensionElements>
-        <camunda:taskListener class="" event="create" />
-      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_15bhjwl</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0j4xb77</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="Task_0waf0j2" name="Print and upload signed PDF (Host)">
-      <bpmn:extensionElements>
-        <camunda:taskListener class="" event="create" />
-      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0j4xb77</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0r7afp1</bpmn:outgoing>
     </bpmn:userTask>
@@ -92,19 +88,19 @@
     <bpmn:sequenceFlow id="SequenceFlow_0j4xb77" sourceRef="Task_04qsy23" targetRef="Task_0waf0j2" />
     <bpmn:sequenceFlow id="SequenceFlow_0s42ofg" sourceRef="Task_0zurebt" targetRef="Task_1osoru1" />
     <bpmn:userTask id="Task_0zurebt" name="View Guarentee Form">
-      <bpmn:extensionElements>
-        <camunda:taskListener class="" event="create" />
-      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0r7afp1</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0s42ofg</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics />
+      <bpmn:multiInstanceLoopCharacteristics>
+        <bpmn:loopCardinality xsi:type="bpmn:tFormalExpression">2</bpmn:loopCardinality>
+      </bpmn:multiInstanceLoopCharacteristics>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_00yfelv" sourceRef="Task_1osoru1" targetRef="EndEventProcessEnded" />
-    <bpmn:serviceTask id="Task_1osoru1" name="Store form">
+    <bpmn:serviceTask id="Task_1osoru1" name="Store form" camunda:type="external" camunda:topic="Store">
       <bpmn:incoming>SequenceFlow_0s42ofg</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_00yfelv</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
+  <bpmn:message id="Message_1l909mh" name="ApplicationOpened" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ApplicationForExchange">
       <bpmndi:BPMNShape id="EndEvent_0fkea3f_di" bpmnElement="EndEventProcessEnded">
@@ -227,20 +223,24 @@
         <dc:Bounds x="1368" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_0u4j7g3_di" bpmnElement="Task_0boqmia">
-        <dc:Bounds x="1560" y="80" width="100" height="80" />
+        <dc:Bounds x="1560" y="74" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0094ec2_di" bpmnElement="SequenceFlow_0094ec2">
         <di:waypoint x="1468" y="120" />
-        <di:waypoint x="1560" y="120" />
+        <di:waypoint x="1514" y="120" />
+        <di:waypoint x="1514" y="114" />
+        <di:waypoint x="1560" y="114" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1514" y="99" width="0" height="12" />
+          <dc:Bounds x="1484" y="111" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1l79k4b_di" bpmnElement="SequenceFlow_1l79k4b">
-        <di:waypoint x="1660" y="120" />
+        <di:waypoint x="1660" y="114" />
+        <di:waypoint x="1702" y="114" />
+        <di:waypoint x="1702" y="120" />
         <di:waypoint x="1744" y="120" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1702" y="99" width="0" height="12" />
+          <dc:Bounds x="1672" y="111" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="SendTask_0cwrdtm_di" bpmnElement="Task_1lr9w8n">
