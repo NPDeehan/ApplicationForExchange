@@ -53,7 +53,7 @@ public class InMemoryH2Test {
 			  .startProcessInstanceByKey(PROCESS_DEFINITION_KEY,
 					  withVariables("candidateFirstName", "Nele", 
 							  "candidateLastName", "Camunda", 
-							  "email", "nele.uhlemann@camunda.com"));
+							  "candidateEmail", "nele.uhlemann@camunda.com"));
 	  
 	  // Now: Drive the process by API and assert correct behavior by camunda-bpm-assert
   }

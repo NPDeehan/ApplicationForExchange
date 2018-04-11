@@ -49,11 +49,11 @@ public class SendTaskEmail implements TaskListener {
         String to = emailAddress;
         String subject = "Task needs to be done";
         String msg = 
-        		"Hi "  + userId + 
+        		"Hi "  + firstName + 
         		"\n\n" + 
         		"You have a task waiting, please follow this link: "
         				+ "\n" + taskLink
-        				+ "\n\n\n" + " Please log in with the following Credentials "
+        				+ "\n\n\n" + " Please log in with the following Credentials " +"\n"
         				+ "User Name = " + userName + "\n" 
         				+ "password = " + userPassword + "\n" 
         				;
