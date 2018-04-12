@@ -37,6 +37,7 @@ public class CreateUserListener implements JavaDelegate {
 	}
 	
 	public String getRandomPassword() {
+		//return "password";
 	    StringBuffer password = new StringBuffer(20);
 	    int next = RandomUtils.nextInt(13) + 8;
 	    password.append(RandomStringUtils.randomAlphanumeric(next));

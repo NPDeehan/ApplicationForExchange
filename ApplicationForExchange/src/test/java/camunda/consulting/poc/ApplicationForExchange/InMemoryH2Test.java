@@ -51,9 +51,12 @@ public class InMemoryH2Test {
 			  processEngine()
 			  .getRuntimeService()
 			  .startProcessInstanceByKey(PROCESS_DEFINITION_KEY,
-					  withVariables("candidateFirstName", "Nele", 
+					  withVariables(
+							  "candidateFirstName", "Nele", 
 							  "candidateLastName", "Camunda", 
-							  "candidateEmail", "nele.uhlemann@camunda.com"));
+							  "candidateEmail", "nele.uhlemann@camunda.com",
+							  "emailsOn", false
+							  ));
 	  
 	  // Now: Drive the process by API and assert correct behavior by camunda-bpm-assert
   }
