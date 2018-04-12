@@ -2,8 +2,7 @@ package camunda.consulting.poc.ApplicationForExchange;
 
 import java.util.Random;
 
-import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.math.RandomUtils;
+
 import org.camunda.bpm.engine.IdentityService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -11,6 +10,7 @@ import org.camunda.bpm.engine.identity.User;
 
 public class CreateUserListener implements JavaDelegate {
 
+	Random rando = new Random();
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
@@ -38,15 +38,23 @@ public class CreateUserListener implements JavaDelegate {
 	
 	public String getRandomPassword() {
 		//return "password";
-	    StringBuffer password = new StringBuffer(20);
-	    int next = RandomUtils.nextInt(13) + 8;
-	    password.append(RandomStringUtils.randomAlphanumeric(next));
-	    return password.toString();
+//	    StringBuffer password = new StringBuffer(20);
+//	    int next = rando.nextInt(13) + 8;
+//	    password.append(rando.);
+		 String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+	        StringBuilder salt = new StringBuilder();
+	        Random rnd = new Random();
+	        while (salt.length() < 8) { // length of the random string.
+	            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+	            salt.append(SALTCHARS.charAt(index));
+	        }
+	        String saltStr = salt.toString();
+	        return saltStr;
 	}
 	
 	public String generateUserName(DelegateExecution execution, String firstName, String lastName) {
 		
-		Random rando = new Random();
+		
 		String userName = null;
 		IdentityService identityService = execution.getProcessEngineServices()
 				.getIdentityService();
