@@ -2,11 +2,27 @@ package camunda.consulting.poc.ApplicationForExchange;
 
 import java.util.Random;
 
+import javax.annotation.Resource.AuthenticationType;
 
+import static org.camunda.bpm.engine.authorization.Authorization.ANY;
+import static org.camunda.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
+import static org.camunda.bpm.engine.authorization.Permissions.ACCESS;
+import static org.camunda.bpm.engine.authorization.Permissions.ALL;
+import static org.camunda.bpm.engine.authorization.Permissions.READ;
+import static org.camunda.bpm.engine.authorization.Permissions.UPDATE;
+import static org.camunda.bpm.engine.authorization.Resources.APPLICATION;
+import static org.camunda.bpm.engine.authorization.Resources.FILTER;
+import static org.camunda.bpm.engine.authorization.Resources.TASK;
+import static org.camunda.bpm.engine.authorization.Resources.USER;
+
+import org.camunda.bpm.engine.AuthorizationService;
 import org.camunda.bpm.engine.IdentityService;
+import org.camunda.bpm.engine.authorization.Authorization;
+import org.camunda.bpm.engine.authorization.Groups;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.identity.User;
+import org.camunda.bpm.engine.impl.persistence.entity.AuthorizationEntity;
 
 public class CreateUserListener implements JavaDelegate {
 
@@ -33,7 +49,16 @@ public class CreateUserListener implements JavaDelegate {
 	      user.setPassword(password);
 	      user.setEmail(email);
 	      identityService.saveUser(user);
-
+	      
+	      AuthorizationService authorizationService = execution.getProcessEngineServices().getAuthorizationService();
+	      Authorization tasklistAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
+	      tasklistAuth.setUserId(user.getId());
+	      tasklistAuth.addPermission(ACCESS);
+	      tasklistAuth.setResourceId("tasklist");
+	      tasklistAuth.setResource(APPLICATION);
+	      authorizationService.saveAuthorization(tasklistAuth);
+	      
+	      execution.setVariable("authorizationId", tasklistAuth.getId());
 	}
 	
 	public String getRandomPassword() {
