@@ -47,11 +47,11 @@ public class SendTaskEmail implements TaskListener {
         String from = "rebbrownbotw@gmail.com";
         String password = "SuperPass";
         String to = emailAddress;
-        String subject = "Task needs to be done";
+        String subject = "Please fill in your Rotary Application";
         String msg = 
         		"Hi "  + firstName + 
         		"\n\n" + 
-        		"You have a task waiting, please follow this link: "
+        		"You have applied for the NGSE Program and your Rotary Club has accepted your application. Please follow this link to complete your application: "
         				+ "\n" + taskLink
         				+ "\n\n\n" + " Please log in with the following Credentials " +"\n"
         				+ "User Name = " + userName + "\n" 
@@ -62,7 +62,7 @@ public class SendTaskEmail implements TaskListener {
         Session session = Session.getDefaultInstance(properties);
 
         try {
-            Address address = new InternetAddress(to, "Rotory Club Exchange Program");
+            Address address = new InternetAddress(to, "Rotary Youth Exchange Program");
             MimeMessage message = new MimeMessage(session);
             message.setFrom(address);
             message.addRecipient(Message.RecipientType.TO, address);
