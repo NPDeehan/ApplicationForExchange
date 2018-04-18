@@ -6,18 +6,29 @@
 </head>
 <body>
 
-<h1 style="color:blue;">Rotary Jugendaustausch Bewerbung</h1>
-
-
-
+<h1 style="color:blue;">Rotary Youth Exchange Application</h1>
 
 <form>
-  Vorname:<br>
+
+Please select the program:<br>
+
+ 	<select>
+  <option value="NGSE">NGSE</option>
+  <option value="Longterm">longterm</option>
+  <option value="STEP">Step</option>
+  <option value="Camp">camp</option>
+</select>
+ 	<p></p>
+
+<h2>Applicants information</h2>
+
+
+  Firstname:<br>
   <input type="text" name="firstname" 
             cam-variable-name="candidateFirstName"
              cam-variable-type="String"><br>
              
- Nachname:<br>
+ Lastname:<br>
   <input type="text" name="lastname" 
             cam-variable-name="candidateLastName"
              cam-variable-type="String"><br>
@@ -31,11 +42,21 @@
   			
   
  <p></p>
- Rotary Club:<br>
+ 
+ <h2>Sponsoring Club information</h2>
+ 
+ District:<br>
+ <input type="text" name="district">
+  <p></p>
+  
+  Rotary Club:<br>
  <input type="text" name="Rotaryclub">
   <p></p>
+  
  YEO:<br>
  <input type="text" name="YEO">
+ <p></p>
+
  
  
 </form>
@@ -43,8 +64,6 @@
 <p></p>
 
 
-
-<button> Bewerbung anlegen </button>
 
 </body>
 
