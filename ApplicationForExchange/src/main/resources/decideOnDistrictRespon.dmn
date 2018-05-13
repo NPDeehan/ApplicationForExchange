@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0ghbrmr" name="DRD" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="DecideOnDistrictResponsibility" name="Decide on District Responsibility">
+    <decisionTable id="decisionTable_1" hitPolicy="FIRST">
+      <input id="input_1" label="districtID" camunda:inputVariable="DistrictID">
+        <inputExpression id="inputExpression_1" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0lty8uh" label="Program Type" camunda:inputVariable="programType">
+        <inputExpression id="LiteralExpression_1t4j9oc" typeRef="string">
+          <text></text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0ddrmlr">
+          <text>"Long Term","NGSE","Camp","Short Term"</text>
+        </inputValues>
+      </input>
+      <output id="OutputClause_1kbtvyd" label="District Chair Name" name="DistrictChair" typeRef="string" />
+      <output id="OutputClause_08gv1uo" label="District Chair Email" name="districtChairEmail" typeRef="string" />
+      <output id="OutputClause_1lvfliy" label="Disctrict Chair Address" name="disctrictChairAddress" typeRef="string" />
+      <rule id="DecisionRule_11dh4lj">
+        <inputEntry id="UnaryTests_05lh386">
+          <text>1890</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hqtxqv">
+          <text>"NGSE","Camp","Short Term"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0sqeb4b">
+          <text>"Dave"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_012suoe">
+          <text>"dave@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1r7gkgb">
+          <text>"Dave Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06kldp1">
+        <inputEntry id="UnaryTests_1uw9mq3">
+          <text>1890</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ukdbtf">
+          <text>"Long Term"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1pemrze">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0yn3ynr">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0xe6odt">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1yydm9x">
+        <inputEntry id="UnaryTests_0y0p560">
+          <text>1850</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bshtra">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07smzgb">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1nb5pkz">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0xayjmd">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_032z57b">
+        <inputEntry id="UnaryTests_1xjt92q">
+          <text>1870</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ievkud">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0he5kxc">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0d9wgul">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_098gidk">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1p599ks">
+        <inputEntry id="UnaryTests_1ffcg8m">
+          <text>1810</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17xno7o">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qkq1ym">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0jvxzod">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_12hwo5h">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0fmwybd">
+        <inputEntry id="UnaryTests_0aul557">
+          <text>1860</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w0h51w">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0q3p43j">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_10m6270">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1safe1v">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1mfdqoh">
+        <inputEntry id="UnaryTests_04kze3o">
+          <text>1830</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0175p4d">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0g96ik5">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1m0ff04">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1wivamx">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_157ompx">
+        <inputEntry id="UnaryTests_0s08w12">
+          <text>1930</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h2m4yu">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15zvid0">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0feudpq">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1tmbk2y">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0252xg0">
+        <inputEntry id="UnaryTests_045rlzu">
+          <text>1841</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vf0t0h">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_02ulxrm">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1umcvr6">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_04o8cw9">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ctx22r">
+        <inputEntry id="UnaryTests_00tezp3">
+          <text>1842</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1e48swv">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_114941h">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0jlzyfq">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0m4mxco">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1i15wkj">
+        <inputEntry id="UnaryTests_13zl86p">
+          <text>1880</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03hftl4">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jzxxlf">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_05vcxe6">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1kuwvb9">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_08jfx7n">
+        <inputEntry id="UnaryTests_1xahtaj">
+          <text>1950</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1oxv2wv">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14kp6as">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1ogvtx4">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1mvq7sg">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19tl8s1">
+        <inputEntry id="UnaryTests_1y9dpeq">
+          <text>1820</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19711qj">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lpbdlt">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_110ypml">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1x5epvp">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19fqzin">
+        <inputEntry id="UnaryTests_1s8gw27">
+          <text>1900</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fpe6t8">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1xcahxe">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1xsvxhs">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_06nrz4v">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05f0ehy">
+        <inputEntry id="UnaryTests_06m3mxd">
+          <text>1800</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v0zjj6">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1kubx3x">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_115tw1g">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1tiyqv0">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0skytzi">
+        <inputEntry id="UnaryTests_0xphkr6">
+          <text>1940</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hr2nt7">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1otgpa4">
+          <text>"Maggie"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1mncwks">
+          <text>"maggie@dave.com"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0f817fz">
+          <text>"Maggie Town"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
