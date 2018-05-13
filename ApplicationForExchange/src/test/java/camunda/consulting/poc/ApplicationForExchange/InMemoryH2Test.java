@@ -61,5 +61,23 @@ public class InMemoryH2Test {
 	  
 	  // Now: Drive the process by API and assert correct behavior by camunda-bpm-assert
   }
+  @Test
+  @Deployment(resources = {"process.bpmn", "decideOnDistrictRespon.dmn"})
+  public void testPDFCreate() {
+	  
+	  processEngine()
+	  .getRuntimeService()
+	  .createProcessInstanceByKey(PROCESS_DEFINITION_KEY)
+	  .startBeforeActivity("Task_1bogluy")
+	  .setVariables( withVariables(
+			  "candidateFirstName", "Nele", 
+			  "candidateLastName", "Camunda", 
+			  "candidateEmail", "nele.uhlemann@camunda.com",
+			  "DistrictID", 1890,
+			  "emailsOn", false
+			  ))
+	  
+	  .execute();	  
+  }
 
 }

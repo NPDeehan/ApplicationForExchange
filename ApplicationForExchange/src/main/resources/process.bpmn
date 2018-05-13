@@ -61,7 +61,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_11bpzar" name="No" sourceRef="ExclusiveGateway_0q2s9fc" targetRef="ExclusiveGateway_0hn24jy">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:serviceTask id="Task_1bogluy" name="Create PDF" camunda:type="external" camunda:topic="CreatePDF">
+    <bpmn:serviceTask id="Task_1bogluy" name="Create PDF" camunda:class="camunda.consulting.poc.ApplicationForExchange.CreatePDFDelegate">
       <bpmn:incoming>SequenceFlow_1bvp7m1</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0094ec2</bpmn:outgoing>
     </bpmn:serviceTask>
