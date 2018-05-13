@@ -140,6 +140,16 @@
 
     <!-- Add your own dependencies here, if in compile scope, they are added to the war -->
 
+    <dependency>
+    	<groupId>com.itextpdf</groupId>
+    	<artifactId>kernel</artifactId>
+    	<version>7.0.0</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.itextpdf</groupId>
+    	<artifactId>layout</artifactId>
+    	<version>7.0.0</version>
+    </dependency>
   </dependencies>
 
   <repositories>

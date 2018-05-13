@@ -37,6 +37,9 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1bphpuh" sourceRef="Task_0pqnlhz" targetRef="ExclusiveGateway_0q2s9fc" />
     <bpmn:userTask id="Task_0pqnlhz" name="Check Application Data content">
+      <bpmn:extensionElements>
+        <camunda:taskListener class="camunda.consulting.poc.ApplicationForExchange.SendTaskEmail" event="create" />
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0hp8mb1</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1bphpuh</bpmn:outgoing>
     </bpmn:userTask>
@@ -125,7 +128,7 @@
     <bpmn:subProcess id="SubProcess_00xj53q" triggeredByEvent="true">
       <bpmn:startEvent id="StartEvent_0v931ig" name="Exchnage Cancelled">
         <bpmn:outgoing>SequenceFlow_14horsj</bpmn:outgoing>
-        <bpmn:messageEventDefinition />
+        <bpmn:messageEventDefinition messageRef="Message_0akpgnm" />
       </bpmn:startEvent>
       <bpmn:sequenceFlow id="SequenceFlow_14horsj" sourceRef="StartEvent_0v931ig" targetRef="Task_0ghkjf5" />
       <bpmn:endEvent id="EndEvent_00nlrcx">
@@ -148,13 +151,14 @@
       <bpmn:incoming>SequenceFlow_1d04tsm</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1d04tsm" sourceRef="Task_0oldgw2" targetRef="EndEvent_1jfutpg" />
-    <bpmn:sendTask id="Task_0oldgw2" name="Send Reminder Mail">
+    <bpmn:sendTask id="Task_0oldgw2" name="Send Reminder Mail" camunda:expression="#{true}">
       <bpmn:incoming>SequenceFlow_0nmx6cp</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1d04tsm</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:association id="Association_07yrec0" associationDirection="One" sourceRef="BoundaryEvent_12uril9" targetRef="Task_016kd7d" />
   </bpmn:process>
   <bpmn:message id="Message_1l909mh" name="ApplicationOpened" />
+  <bpmn:message id="Message_0akpgnm" name="ExchangeCancelled" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ApplicationForExchange">
       <bpmndi:BPMNEdge id="SequenceFlow_08va5r8_di" bpmnElement="SequenceFlow1">
