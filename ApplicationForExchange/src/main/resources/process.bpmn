@@ -2,7 +2,7 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.14.0">
   <bpmn:process id="ApplicationForExchange" name="ApplicationForExchange" isExecutable="true">
     <bpmn:sequenceFlow id="SequenceFlow1" sourceRef="StartEventProcessStarted" targetRef="ExclusiveGateway_0xu3e7y" />
-    <bpmn:startEvent id="StartEventProcessStarted" name="Applicatoin Opened" camunda:formKey="embedded:app:forms/StartPage.html">
+    <bpmn:startEvent id="StartEventProcessStarted" name="Applicatoin Opened" camunda:asyncAfter="true" camunda:formKey="embedded:app:forms/StartPage.html">
       <bpmn:outgoing>SequenceFlow1</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_1l909mh" />
     </bpmn:startEvent>
