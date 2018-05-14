@@ -1,0 +1,65 @@
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="submit_form.js"></script>
+  </script>
+  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+
+<body style="display: flex; height: 100%; flex-direction: row; width: 100%;align-content: center;justify-content: center;align-items: center;">
+  <div class="flex-container" style="flex-direction:column;display: flex;align-content: center;justify-content: center;align-items: center;
+  border: 3px solid rgb(174, 148, 33);
+  border-radius: 20px;
+  padding: 10px">
+    <div id="placeOrder" style="display:flex; align-content: center;justify-content: center;align-items: center;margin-left: 40px; margin-top: 40px; margin-right: 40px;">
+      <form name="myForm" class="form-group" action="">
+        <label class="form-check-label" for="firstname">Firstname</label>
+        <input class="form-control " style="width: 400px" type="text" name="gender" id="firstname" value="">
+        <br>
+        <label class="form-check-label" for="lastname">Lastname</label>
+        <input class="form-control" style="width: 400px" type="text" name="gender" id="lastname" value="">
+        <br>
+        <label class="form-check-label" for="email">E-mail</label>
+        <input class="form-control" style="width: 400px" type="text" name="gender" id="email" value="">
+        <br>
+        <label class="form-check-label" for="Rotaryclub">Rotaryclub</label>
+        <input class="form-control" style="width: 400px" type="text" name="gender" id="Rotaryclub" value="">
+        <br>
+        <label class="form-check-label" for="YEO">YEO</label>
+        <input class="form-control" style="width: 400px" type="text" name="gender" id="YEO" value="">
+        <br>
+        <label class="form-check-label" for="districtID">Distric ID</label>
+        <select name="cars" class="form-control" style="width: 400px" name="gender" id="districtID" value="">
+          <option value="1800">1800</option>
+          <option value="1810">1810</option>
+          <option value="1820">1820</option>
+          <option value="1830">1830</option>
+          <option value="1841">1841</option>
+          <option value="1842">1842</option>
+          <option value="1850">1850</option>
+          <option value="1860">1860</option>
+          <option value="1870">1870</option>
+          <option value="1880">1880</option>
+          <option value="1890">1890</option>
+          <option value="1900">1900</option>
+          <option value="1930">1930</option>
+          <option value="1940">1940</option>
+          <option value="1950">1950</option>
+        </select>
+        <br>
+        <!-- <input class="form-control" type="submit" value="Submit"> -->
+      </form>
+
+    </div>
+    <button type="submit" class='input_submit' style="display: flex;margin-right: 15px; margin-bottom: 20px" onClick="post()">
+      Register
+    </button>
+  </div>
+</body>
