@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: camunda BPM - example - invoice
+Implementation-Version: 7.9.0
+Built-By: Niall
+Implementation-Vendor-Id: org.camunda.bpm.example
+Build-Jdk: 1.8.0_171
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: camunda services GmbH
+
